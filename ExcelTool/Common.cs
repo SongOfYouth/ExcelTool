@@ -75,7 +75,11 @@ namespace ExcelTool
             }
             return infos[0].FullName;
         }
-        //获取文件路径
+
+        /// <summary>逐级获取关联的最终文件路径</summary>
+        /// <param name="strStartPath"></param>
+        /// <param name="lsSearchstr"></param>
+        /// <returns></returns>
         public static string GetFilePath(string strStartPath, List<string> lsSearchstr)
         {
             if (string.IsNullOrEmpty(strStartPath) || lsSearchstr.Count == 0) return null;
@@ -94,7 +98,30 @@ namespace ExcelTool
                 return null;
             }
         }
-
+        /// <summary> 获取文件列表</summary>
+        /// <param name="ds"></param>
+        /// <param name="originPath"></param>
+        /// <returns></returns>
+        public static DataTable GetFilePathes(string originPath)
+        {
+            if (string.IsNullOrEmpty(originPath)) return null;
+            DataTable dt = new DataTable();
+            dt.Columns.AddRange(new DataColumn[] {new DataColumn("ID",typeof(string)),
+                new DataColumn("NAME", typeof(string)),
+            new DataColumn("TYPE", typeof(string))});
+            DirectoryInfo directory = new DirectoryInfo(originPath);
+            DirectoryInfo[] infos = directory.GetDirectories();
+            foreach (var dir in infos)
+            {
+                if (dir.Name.StartsWith(".")) continue; //排除.开头的隐藏文件
+                dt.Rows.Add(new object[] { dir.FullName,dir.Name,"Path"});
+            }
+            foreach (var file in directory.GetFiles())
+            {
+                dt.Rows.Add(new object[] { file.FullName, file.Name,"File"});
+            }
+            return dt;
+        }
         #endregion
 
         #region 字符操作

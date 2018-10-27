@@ -28,19 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.SuspendLayout();
+            // 
+            // panelControl1
+            // 
+            this.panelControl1.Location = new System.Drawing.Point(164, 119);
+            this.panelControl1.Name = "panelControl1";
+            this.panelControl1.Size = new System.Drawing.Size(200, 100);
+            this.panelControl1.TabIndex = 0;
             // 
             // DataBinding
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(787, 419);
+            this.Controls.Add(this.panelControl1);
             this.Name = "DataBinding";
             this.Text = "数据绑定";
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private DevExpress.XtraEditors.PanelControl panelControl1;
     }
 }

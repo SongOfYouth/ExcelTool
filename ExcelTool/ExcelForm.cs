@@ -55,6 +55,8 @@ namespace ExcelTool
         private void MenuItemSysTemplet_Click(object sender, EventArgs e)
         {
             this.TempletPath = BaseConfig.SetConfigInfo("FilePath", "TempletPath", "模板路径");
+            //初始化文件列表
+            DataBindingForCombo(cmbPath1, this.TempletPath);
         }
 
         private void MenuItemSysOut_Click(object sender, EventArgs e)
@@ -211,6 +213,7 @@ namespace ExcelTool
             psi.Arguments = "/e,/select," + fileFullName;
             System.Diagnostics.Process.Start(psi);
         }
+
         #region 路径加载
         private void cmbPath1_EditValueChanged(object sender, EventArgs e)
         {
